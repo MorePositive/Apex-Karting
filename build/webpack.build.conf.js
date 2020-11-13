@@ -1,9 +1,11 @@
-const path = require('path');
+const { merge } = require('webpack-merge')
+const baseWebpackConfig = require('./webpack.base.conf')
 
-module.exports = {
-  entry: './src/index.js',
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
-};
+const buildWebpackConfig = merge(baseWebpackConfig, {
+    mode: 'production',
+    plugins: []
+})
+
+module.exports = new Promise((resolve, reject) => {
+    resolve(buildWebpackConfig)
+})
